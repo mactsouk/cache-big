@@ -13,7 +13,7 @@ blocks:
         commands:
           - checkout
           - cd ..
-          - echo $SEMAPHORE_GIT_DIR
+          - echo "$SEMAPHORE_GIT_REPO_NAME-$SEMAPHORE_GIT_SHA"
           - cache store "$SEMAPHORE_GIT_REPO_NAME-$SEMAPHORE_GIT_SHA" "$SEMAPHORE_GIT_DIR"
 
   - name: Task 2 - Single Job
