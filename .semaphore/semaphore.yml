@@ -12,10 +12,8 @@ blocks:
       - name: Cache GitHub repository
         commands:
           - checkout
-          - ls -1
-          - echo $APP_ENV
-          - echo "Docker build..."
-          - echo "done"
+          - cd ..
+          - echo $SEMAPHORE_GIT_DIR
 
   - name: "Smoke tests"
     task:
