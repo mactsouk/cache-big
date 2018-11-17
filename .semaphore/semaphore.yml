@@ -14,16 +14,18 @@ blocks:
           - checkout
           - cd ..
           - echo $SEMAPHORE_GIT_DIR
+          - cache store "$SEMAPHORE_GIT_REPO_NAME"-"$SEMAPHORE_GIT_SHA" "$SEMAPHORE_GIT_DIR"
 
-  - name: "Smoke tests"
+  - name: Task 2 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 1
         commands:
-          - checkout
-          - echo "make smoke"
+          - cache restore "$SEMAPHORE_GIT_REPO_NAME"-"$SEMAPHORE_GIT_SHA"
+          - ls -al
+          - ls -al "$SEMAPHORE_GIT_DIR"
 
-  - name: "Unit tests"
+  - name: Task 3 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 2
@@ -31,7 +33,7 @@ blocks:
           - checkout
           - echo "make rspec"
 
-  - name: "Integration tests"
+  - name: Task 3 - Two jobs
     task:
       jobs:
       - name: Use Cache - Job 3
