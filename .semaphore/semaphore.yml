@@ -1,18 +1,15 @@
 version: v1.0
-name: First pipeline example
+name: Recipe of Caching Big Repositories
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
 blocks:
-  - name: "Build"
+  - name: Reuse GitHub repository
     task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
       jobs:
-      - name: Docker build
+      - name: Cache GitHub repository
         commands:
           - checkout
           - ls -1
@@ -23,7 +20,7 @@ blocks:
   - name: "Smoke tests"
     task:
       jobs:
-      - name: Smoke
+      - name: Use Cache - Job 1
         commands:
           - checkout
           - echo "make smoke"
@@ -31,33 +28,21 @@ blocks:
   - name: "Unit tests"
     task:
       jobs:
-      - name: RSpec
+      - name: Use Cache - Job 2
         commands:
           - checkout
           - echo "make rspec"
 
-      - name: Lint code
-        commands:
-          - checkout
-          - echo "make lint"
-
-      - name: Check security
-        commands:
-          - checkout
-          - echo "make security"
-
   - name: "Integration tests"
     task:
       jobs:
-      - name: Cucumber
+      - name: Use Cache - Job 3
         commands:
           - checkout
           - echo "make cucumber"
 
-  - name: "Push Image"
-    task:
-      jobs:
-      - name: Push
+      - name: Use Cache - Job 4
         commands:
           - checkout
           - echo "make docker.push"
+
