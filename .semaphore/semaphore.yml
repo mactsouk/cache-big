@@ -13,17 +13,17 @@ blocks:
         commands:
           - checkout
           - cd ..
-          - echo "$SEMAPHORE_GIT_DIR-$SEMAPHORE_GIT_SHA"
-          - cache store "$SEMAPHORE_GIT_DIR-$SEMAPHORE_GIT_SHA" "$SEMAPHORE_GIT_DIR"
+          - echo "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - cache store "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA" "$SEMAPHORE_PROJECT_NAME"
 
   - name: Task 2 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 1
         commands:
-          - cache restore "$SEMAPHORE_GIT_DIR-$SEMAPHORE_GIT_SHA"
+          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
           - ls -al
-          - ls -al "$SEMAPHORE_GIT_DIR"
+          - ls -al "$SEMAPHORE_PROJECT_NAME"
 
   - name: Task 3 - Single Job
     task:
