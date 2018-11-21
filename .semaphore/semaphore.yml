@@ -29,7 +29,8 @@ blocks:
       - name: Use Cache - Job 2
         commands:
           - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
-          - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
+          - ls -al "$SEMAPHORE_PROJECT_NAME"
+          - du -k -s
 
   - name: Task 3 - Two jobs
     task:
