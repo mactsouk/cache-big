@@ -32,7 +32,7 @@ blocks:
           - ls -al "$SEMAPHORE_PROJECT_NAME"
           - du -k -s
 
-  - name: Task 3 - Two jobs
+  - name: Task 4 - Two jobs
     task:
       jobs:
       - name: Use Cache - Job 3
@@ -45,3 +45,10 @@ blocks:
           - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
           - du -k -s
 
+  - name: Task 5 - Single Job
+    task:
+      jobs:
+      - name: Use Cache - Job 5
+        commands:
+          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - ls -al "$SEMAPHORE_PROJECT_NAME"
