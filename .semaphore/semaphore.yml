@@ -52,3 +52,4 @@ blocks:
         commands:
           - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
           - ls -al "$SEMAPHORE_PROJECT_NAME"
+          - du -k -s
