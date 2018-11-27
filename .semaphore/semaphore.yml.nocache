@@ -20,8 +20,7 @@ blocks:
       - name: Use Cache - Job 1
         commands:
           - checkout
-          - cd ..
-          - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
+          - ls -al
 
   - name: Task 3 - Single Job
     task:
@@ -39,8 +38,7 @@ blocks:
       - name: Use Cache - Job 3
         commands:
           - checkout
-          - cd ..
-          - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
+          - ls -al
 
       - name: Use Cache - Job 4
         commands:
