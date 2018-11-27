@@ -13,14 +13,14 @@ blocks:
         commands:
           - checkout
           - cd ..
-          - cache store "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA" $SEMAPHORE_PROJECT_NAME
 
   - name: Task 2 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 1
         commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - checkout
+          - cd ..
           - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
 
   - name: Task 3 - Single Job
@@ -28,7 +28,8 @@ blocks:
       jobs:
       - name: Use Cache - Job 2
         commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - checkout
+          - cd ..
           - ls -al "$SEMAPHORE_PROJECT_NAME"
           - du -k -s
 
@@ -37,12 +38,14 @@ blocks:
       jobs:
       - name: Use Cache - Job 3
         commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - checkout
+          - cd ..
           - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
 
       - name: Use Cache - Job 4
         commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - checkout
+          - cd ..
           - du -k -s
 
   - name: Task 5 - Single Job
@@ -50,6 +53,7 @@ blocks:
       jobs:
       - name: Use Cache - Job 5
         commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+          - checkout
+          - cd ..
           - ls -al "$SEMAPHORE_PROJECT_NAME"
           - du -k -s
