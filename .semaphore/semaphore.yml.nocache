@@ -14,7 +14,7 @@ blocks:
           - checkout
           - cd ..
 
-  - name: Task 2 - Single Job
+  - name: Block item 2 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 1
@@ -22,7 +22,7 @@ blocks:
           - checkout
           - ls -al
 
-  - name: Task 3 - Single Job
+  - name: Block item 3 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 2
@@ -32,7 +32,7 @@ blocks:
           - ls -al "$SEMAPHORE_PROJECT_NAME"
           - du -k -s
 
-  - name: Task 4 - Two jobs
+  - name: Block item 4 - Two jobs
     task:
       jobs:
       - name: Use Cache - Job 3
@@ -46,7 +46,7 @@ blocks:
           - cd ..
           - du -k -s
 
-  - name: Task 5 - Single Job
+  - name: Block item 5 - Single Job
     task:
       jobs:
       - name: Use Cache - Job 5
@@ -54,4 +54,12 @@ blocks:
           - checkout
           - cd ..
           - ls -al "$SEMAPHORE_PROJECT_NAME"
+          - du -k -s
+
+  - name: Block item 6 - Single Job
+    task:
+      jobs:
+      - name: Use Cache - Job 6
+        commands:
+          - checkout
           - du -k -s
