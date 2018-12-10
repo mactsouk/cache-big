@@ -19,7 +19,8 @@ blocks:
     task:
       jobs:
       - name: Use Cache - Job 1
-        prologue:
+      prologue:
+        commands:
           - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
         commands:
           - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
