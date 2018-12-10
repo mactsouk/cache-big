@@ -15,13 +15,17 @@ blocks:
           - cd ..
           - cache store "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA" $SEMAPHORE_PROJECT_NAME
 
-  - name: Block item 2 - Single Job
+  - name: Block item 2 - Two Jobs
     task:
       jobs:
       - name: Use Cache - Job 1
-        commands:
+        prologue:
           - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
+        commands:
           - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
+      - name: Use Cache - Job 2
+        commands:
+          - du -k -s
 
   - name: Block item 3 - Single Job
     task:
@@ -32,32 +36,3 @@ blocks:
           - ls -al "$SEMAPHORE_PROJECT_NAME"
           - du -k -s
 
-  - name: Block item 4 - Two jobs
-    task:
-      jobs:
-      - name: Use Cache - Job 3
-        commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
-          - ls -al "$SEMAPHORE_PROJECT_NAME"/FILES
-
-      - name: Use Cache - Job 4
-        commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
-          - du -k -s
-
-  - name: Block item 5 - Single Job
-    task:
-      jobs:
-      - name: Use Cache - Job 5
-        commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
-          - ls -al "$SEMAPHORE_PROJECT_NAME"
-          - du -k -s
-
-  - name: Block item 6 - Single Job
-    task:
-      jobs:
-      - name: Use Cache - Job 6
-        commands:
-          - cache restore "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
-          - du -k -s
