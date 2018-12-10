@@ -1,0 +1,14 @@
+version: v1.0
+name: Cleanup cache
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Cache delete
+    task:
+      jobs:
+      - name: Delete key from cache
+        commands:
+          - cache delete "$SEMAPHORE_PROJECT_NAME-$SEMAPHORE_GIT_SHA"
